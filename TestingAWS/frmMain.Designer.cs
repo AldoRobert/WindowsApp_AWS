@@ -1,6 +1,6 @@
 ﻿namespace TestingAWS
 {
-    partial class Form1
+    partial class frmMain
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
             btnSendSNS = new Button();
+            tabPage2 = new TabPage();
+            pictureBox1 = new PictureBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -48,6 +51,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(pictureBox1);
             tabPage1.Controls.Add(btnSendSNS);
             tabPage1.Location = new Point(4, 24);
             tabPage1.Name = "tabPage1";
@@ -56,6 +60,16 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "SNS";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnSendSNS
+            // 
+            btnSendSNS.Location = new Point(107, 205);
+            btnSendSNS.Name = "btnSendSNS";
+            btnSendSNS.Size = new Size(56, 22);
+            btnSendSNS.TabIndex = 0;
+            btnSendSNS.Text = "Send";
+            btnSendSNS.UseVisualStyleBackColor = true;
+            btnSendSNS.Click += btnSendSNS_Click;
             // 
             // tabPage2
             // 
@@ -67,26 +81,27 @@
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnSendSNS
+            // pictureBox1
             // 
-            btnSendSNS.Location = new Point(30, 41);
-            btnSendSNS.Name = "btnSendSNS";
-            btnSendSNS.Size = new Size(56, 22);
-            btnSendSNS.TabIndex = 0;
-            btnSendSNS.Text = "Send";
-            btnSendSNS.UseVisualStyleBackColor = true;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(25, 19);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(233, 163);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
             // 
-            // Form1
+            // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(954, 505);
             Controls.Add(tabControl1);
-            Name = "Form1";
+            Name = "frmMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -96,5 +111,6 @@
         private TabPage tabPage1;
         private Button btnSendSNS;
         private TabPage tabPage2;
+        private PictureBox pictureBox1;
     }
 }
