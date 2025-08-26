@@ -1,10 +1,13 @@
 using Amazon.Runtime;
 using Amazon.SimpleNotificationService;
+using Amazon.SimpleNotificationService.Model;
+using Amazon.SQS;
+using Amazon.SQS.Model;
+using Microsoft.Extensions.Configuration;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Extensions.Configuration;
 using TestingAWS.Models;
-using Amazon.SimpleNotificationService.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace TestingAWS
 {
@@ -61,6 +64,33 @@ namespace TestingAWS
             };
 
             var response = await client.PublishAsync(request);
+        }
+        private async Task Send_SQS(Quote quote)
+        {
+            var accessKey = Program.Configuration["AppSettings:AccessKeySQS"];
+            var secret = Program.Configuration["AppSettings:SecretSQS"];
+
+            var awsaccount = Program.Configuration["AppSettings:AWSAccount"];
+
+
+            var credentials = new BasicAWSCredentials(accessKey, secret);
+
+
+            var client = new AmazonSQSClient(credentials, Amazon.RegionEndpoint.USEast2);
+
+            var request = new SendMessageRequest()
+            {
+                QueueUrl = "https://sqs.us-east-2.amazonaws.com/"+ awsaccount + "/quotes-sqs",
+                MessageBody = JsonSerializer.Serialize(quote)
+            };
+
+            var response = await client.SendMessageAsync(request);
+        }
+        private async void btnSendSQS_Click(object sender, EventArgs e)
+        {
+            var _quote = await GetQuotes();
+
+            await Send_SQS(_quote);
         }
     }
 }
